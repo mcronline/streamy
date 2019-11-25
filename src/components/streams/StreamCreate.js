@@ -5,15 +5,15 @@ import {createStream} from '../../actions';
 
 class StreamCreate extends React.Component {
 
-    renderError({ error, touched }){
-        if(error && touched){
-            return(
-                <div className="ui error message">
-                    <div className="header">{error}</div>
-                </div>
-            );
-        }
-    }
+  renderError({ error, touched }){
+      if(error && touched){
+          return(
+              <div className="ui error message">
+                  <div className="header">{error}</div>
+              </div>
+          );
+      }
+  }
 
   renderInput = ({ input, label, meta}) => {
     const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
@@ -26,8 +26,8 @@ class StreamCreate extends React.Component {
     );
   }
 
-  onSubmit(formValues) {
-    console.log(formValues);
+  onSubmit = (formValues) => {
+    this.props.createStream(formValues);
   }
 
   render() {
