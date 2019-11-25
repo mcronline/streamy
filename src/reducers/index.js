@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
+import streamReducer from "./streamReducer";
 
 const INITIAL_USER_AUTH_STATUS = {
   isSignedIn: null,
@@ -21,5 +22,6 @@ const authReducer = (userAuthStatus = INITIAL_USER_AUTH_STATUS, action) => {
 
 export default combineReducers({
   auth: authReducer,
-  form: formReducer
+  form: formReducer,
+  stream : streamReducer
 });
