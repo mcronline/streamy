@@ -23,5 +23,5 @@ const authReducer = (userAuthStatus = INITIAL_USER_AUTH_STATUS, action) => {
 export default combineReducers({
   auth: authReducer,
   form: formReducer,
-  stream : streamReducer
+  streams : streamReducer
 });
