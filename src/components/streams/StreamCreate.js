@@ -31,24 +31,35 @@ class StreamCreate extends React.Component {
   }
 
   render() {
-    return (
-      <form
-        className="ui form error"
-        onSubmit={this.props.handleSubmit(this.onSubmit)}
-      >
-        <Field 
-            name="title"
+
+    if(this.props.isSignedIn){
+
+      return (
+        <form
+          className="ui form error"
+          onSubmit={this.props.handleSubmit(this.onSubmit)}
+        >
+          <Field 
+              name="title"
+              component={this.renderInput}
+              label="Title"
+          />
+          <Field
+            name="description"
             component={this.renderInput}
-            label="Title"
-        />
-        <Field
-          name="description"
-          component={this.renderInput}
-          label="Description"
-        />
-        <button className="ui button primary">Submit</button>
-      </form>
-    );
+            label="Description"
+          />
+          <button className="ui button primary">Submit</button>
+        </form>
+      );
+
+    }else{
+
+      return (
+        <h3>Please SIGN IN above to create a stream.</h3>
+      )
+
+    }
   }
 }
 
@@ -72,4 +83,12 @@ const formWrapped = reduxForm({
   validate
 })(StreamCreate);
 
-export default connect(null, {createStream})(formWrapped);
+const mapStateToProps = (state) => {
+  return(
+    {
+      isSignedIn : state.auth.isSignedIn
+    }
+  )
+}
+
+export default connect(mapStateToProps, {createStream})(formWrapped);
